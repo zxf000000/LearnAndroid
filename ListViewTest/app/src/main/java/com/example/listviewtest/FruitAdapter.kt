@@ -17,6 +17,8 @@ class FruitAdapter(context: Context, resourceId: Int, objects: List<Fruit> ): Ar
     }
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         val fruit = getItem(position)
+        // 使用viewholder来复用imageview和textView,
+        // 使用convertView来复用listItem
         var view: View?
         var viewHolder: ViewHolder?
         if (convertView == null) {
