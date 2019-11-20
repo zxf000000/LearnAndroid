@@ -5,12 +5,23 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 
 class FruitAdapter(val fruitList: List<Fruit>): RecyclerView.Adapter<FruitAdapter.ViewHolder>() {
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.fruit_item, parent, false)
         val viewHolder = ViewHolder(view)
+
+        viewHolder.itemView.setOnClickListener {
+            Toast.makeText(view.context, "tapped item ${viewHolder.adapterPosition}", Toast.LENGTH_SHORT).show()
+        }
+        viewHolder.textName.setOnClickListener {
+            Toast.makeText(view.context, "tapped item ${viewHolder.adapterPosition} name", Toast.LENGTH_SHORT).show()
+
+        }
+
         return viewHolder
     }
 
@@ -22,6 +33,9 @@ class FruitAdapter(val fruitList: List<Fruit>): RecyclerView.Adapter<FruitAdapte
         val fruit = fruitList[position]
         holder.textName.text = fruit.name
         holder.imgView.setImageResource(fruit.imgId)
+
+
+
     }
 
     class ViewHolder(itemView: View): RecyclerView.ViewHolder(
